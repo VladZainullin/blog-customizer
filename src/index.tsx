@@ -29,7 +29,7 @@ const App = () => {
 	);
 
 	const [selectedFontSizeOption, setSelectedFontSizeOption] = useState(
-		defaultArticleState.fontFamilyOption
+		defaultArticleState.fontSizeOption
 	);
 
 	const [selectedFontColorOption, setSelectedFontColorOption] = useState(
@@ -72,6 +72,8 @@ const App = () => {
 		setSelectedFontColorOption(defaultArticleState.fontColor);
 	};
 
+	const submitForm = () => {};
+
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -84,7 +86,7 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm onClear={clearForm}>
+			<ArticleParamsForm onClear={clearForm} onSubmit={submitForm}>
 				<Select
 					title={'Шрифт'}
 					selected={selectedFontFamilyOption}
@@ -118,7 +120,7 @@ const App = () => {
 					onChange={onChangeSelectedContentWidth}
 				/>
 			</ArticleParamsForm>
-			<Article />
+			<Article fontFamily={selectedFontFamilyOption} />
 		</main>
 	);
 };
