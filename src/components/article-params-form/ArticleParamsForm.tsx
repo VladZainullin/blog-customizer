@@ -7,6 +7,8 @@ import { ReactNode, useState } from 'react';
 
 type ArticleParamsFormProps = {
 	children: ReactNode;
+	onClear?: () => void;
+	onSubmit?: () => void;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
@@ -27,8 +29,18 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 					<span className={styles.title}>Задайте параметры</span>
 					{props.children}
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' htmlType='reset' type='clear' />
-						<Button title='Применить' htmlType='submit' type='apply' />
+						<Button
+							title='Сбросить'
+							htmlType='reset'
+							type='clear'
+							onClick={props.onClear}
+						/>
+						<Button
+							title='Применить'
+							htmlType='submit'
+							type='apply'
+							onClick={props.onSubmit}
+						/>
 					</div>
 				</form>
 			</aside>

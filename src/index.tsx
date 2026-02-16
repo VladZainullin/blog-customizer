@@ -63,6 +63,15 @@ const App = () => {
 		setSelectedContentWidthOption(value);
 	};
 
+	const clearForm = () => {
+		setSelectedFontFamilyOption(defaultArticleState.fontFamilyOption);
+		setSelectedFontSizeOption(defaultArticleState.fontSizeOption);
+		setSelectedFontColorOption(defaultArticleState.fontColor);
+		setSelectedBackgroundColorOption(defaultArticleState.backgroundColor);
+		setSelectedContentWidthOption(defaultArticleState.contentWidth);
+		setSelectedFontColorOption(defaultArticleState.fontColor);
+	};
+
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -75,7 +84,7 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm>
+			<ArticleParamsForm onClear={clearForm}>
 				<Select
 					title={'Шрифт'}
 					selected={selectedFontFamilyOption}
