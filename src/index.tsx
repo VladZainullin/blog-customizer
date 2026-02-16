@@ -2,9 +2,16 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties } from 'react';
 import clsx from 'clsx';
 
-import { Article } from './components/article/Article';
-import { ArticleParamsForm } from './components/article-params-form/ArticleParamsForm';
-import { defaultArticleState } from './constants/articleProps';
+import { Article } from 'components/article';
+import { ArticleParamsForm } from 'components/article-params-form';
+import {
+	backgroundColors,
+	contentWidthArr,
+	defaultArticleState,
+	fontColors,
+	fontFamilyOptions,
+	fontSizeOptions,
+} from './constants/articleProps';
 
 import './styles/index.scss';
 import styles from './styles/index.module.scss';
@@ -25,7 +32,18 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm
+				selectedFontFamilyClass={defaultArticleState.fontFamilyOption}
+				fontFamilyClasses={fontFamilyOptions}
+				selectedFontSize={defaultArticleState.fontSizeOption}
+				fontSizes={fontSizeOptions}
+				selectedFontColor={defaultArticleState.fontColor}
+				fontColors={fontColors}
+				selectedBackgroundColor={defaultArticleState.backgroundColor}
+				backgroundColors={backgroundColors}
+				selectedContentWidth={defaultArticleState.contentWidth}
+				contentWidths={contentWidthArr}
+			/>
 			<Article />
 		</main>
 	);
