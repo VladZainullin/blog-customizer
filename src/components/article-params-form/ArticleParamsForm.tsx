@@ -3,18 +3,26 @@ import { Button } from 'src/ui/button';
 
 import styles from './ArticleParamsForm.module.scss';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 type ArticleParamsFormProps = {
 	children: ReactNode;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const onClick = () => {
+		setIsOpen(!isOpen);
+	};
 
 	return (
 		<>
-			<ArrowButton isOpen={true} onClick={() => {}} />
-			<aside className={`${styles.container} ${styles.container_open}`}>
+			<ArrowButton isOpen={isOpen} onClick={onClick} />
+			<aside
+				className={`${styles.container} ${
+					isOpen ? styles.container_open : ''
+				}`}>
 				<form className={styles.form}>
 					<span className={styles.title}>Задайте параметры</span>
 					{props.children}
