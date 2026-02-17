@@ -22,19 +22,11 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 
 	const asideRef = useRef<HTMLDivElement>(null);
 
-	const onClose = (event: MouseEvent) => {
-		const clickedElement = event.target as Node;
-
-		if (!asideRef.current?.contains(clickedElement)) {
-			setIsOpen(false);
-		}
-	};
-
 	const onClick = () => {
 		setIsOpen(!isOpen);
 	};
 
-	const onMouseDown = (event: React.MouseEvent) => {
+	const onMouseDown = (event: MouseEvent) => {
 		const clickedElement = event.target as Node;
 
 		if (!asideRef.current?.contains(clickedElement)) {
@@ -43,9 +35,9 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 	};
 
 	useEffect(() => {
-		document.addEventListener('mousedown', onClose);
+		document.addEventListener('mousedown', onMouseDown);
 		return () => {
-			document.removeEventListener('mousedown', onClose);
+			document.removeEventListener('mousedown', onMouseDown);
 		};
 	}, [isOpen]);
 
@@ -54,7 +46,6 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 			<ArrowButton isOpen={isOpen} onClick={onClick} />
 			<aside
 				ref={asideRef}
-				onMouseDown={onMouseDown}
 				className={`${styles.container} ${
 					isOpen ? styles.container_open : ''
 				}`}>
