@@ -19,7 +19,8 @@ export const Article = (props: ArticleProps) => {
 				family={props.fontFamily.className as FontFamiliesClasses}
 				size={45}
 				weight={800}
-				uppercase>
+				uppercase
+				dynamicLite>
 				Портрет Западной Швейцарии
 			</Text>
 			<div className={styles.titleDescription}>
@@ -28,12 +29,14 @@ export const Article = (props: ArticleProps) => {
 					family={props.fontFamily.className as FontFamiliesClasses}
 					weight={800}
 					uppercase
-					align='center'>
+					align='center'
+					dynamicLite>
 					Примитивист Фиштр расписывает новый бюджетный авиалайнер
 				</Text>
 			</div>
 			<img className={styles.image} src={plane} alt='Картинка самолета' />
 			<Text
+				dynamic
 				family={props.fontFamily.className as FontFamiliesClasses}
 				size={18}
 				fontStyle='italic'>
@@ -41,6 +44,7 @@ export const Article = (props: ArticleProps) => {
 				2017 CC BY-SA 2.0
 			</Text>
 			<Text
+				dynamic
 				family={props.fontFamily.className as FontFamiliesClasses}
 				size={18}>
 				В конце 2016 года швейцарская авиакомпания Swiss получила свой первый
@@ -50,6 +54,7 @@ export const Article = (props: ArticleProps) => {
 				лично поправит роспись, когда её будут наносить на фюзеляж.
 			</Text>
 			<Text
+				dynamic
 				family={props.fontFamily.className as FontFamiliesClasses}
 				size={18}>
 				Выбор пал на примитивиста Матиаса Форбаша, работающего под псевдонимом
@@ -60,6 +65,7 @@ export const Article = (props: ArticleProps) => {
 				до ушей.
 			</Text>
 			<Text
+				dynamic
 				family={props.fontFamily.className as FontFamiliesClasses}
 				size={18}>
 				С мая 2017 года &quot;Бомбардье&quot; носит имя &quot;Швейцарская

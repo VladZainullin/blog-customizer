@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode, CSSProperties, useState } from 'react';
+import { StrictMode, CSSProperties, useState, FormEvent } from 'react';
 import clsx from 'clsx';
 
 import { Article } from 'components/article';
@@ -69,21 +69,48 @@ const App = () => {
 		setSelectedFontColorOption(defaultArticleState.fontColor);
 		setSelectedBackgroundColorOption(defaultArticleState.backgroundColor);
 		setSelectedContentWidthOption(defaultArticleState.contentWidth);
-		setSelectedFontColorOption(defaultArticleState.fontColor);
 	};
 
-	const submitForm = () => {};
+	const [fontFamilyOption, setFontFamilyOption] = useState(
+		defaultArticleState.fontFamilyOption
+	);
+
+	const [fontSizeOption, setFontSizeOption] = useState(
+		defaultArticleState.fontSizeOption
+	);
+
+	const [fontColorOption, setFontColorOption] = useState(
+		defaultArticleState.fontColor
+	);
+
+	const [backgroundColorOption, setBackgroundColorOption] = useState(
+		defaultArticleState.backgroundColor
+	);
+
+	const [contentWidthOption, setContentWidthOption] = useState(
+		defaultArticleState.contentWidth
+	);
+
+	const submitForm = (event: FormEvent) => {
+		event.preventDefault();
+
+		setFontFamilyOption(selectedFontFamilyOption);
+		setFontSizeOption(selectedFontSizeOption);
+		setFontColorOption(selectedFontColorOption);
+		setBackgroundColorOption(selectedBackgroundColorOption);
+		setContentWidthOption(selectedContentWidthOption);
+	};
 
 	return (
 		<main
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': defaultArticleState.fontFamilyOption.value,
-					'--font-size': defaultArticleState.fontSizeOption.value,
-					'--font-color': defaultArticleState.fontColor.value,
-					'--container-width': defaultArticleState.contentWidth.value,
-					'--bg-color': defaultArticleState.backgroundColor.value,
+					'--font-family': fontFamilyOption.value,
+					'--font-size': fontSizeOption.value,
+					'--font-color': fontColorOption.value,
+					'--container-width': contentWidthOption.value,
+					'--bg-color': backgroundColorOption.value,
 				} as CSSProperties
 			}>
 			<ArticleParamsForm onClear={clearForm} onSubmit={submitForm}>
@@ -101,7 +128,7 @@ const App = () => {
 					onChange={onChangeSelectedFontSize}
 				/>
 				<Select
-					title={'Цвет фона'}
+					title={'Цвет шрифта'}
 					selected={selectedFontColorOption}
 					options={fontColors}
 					onChange={onChangeSelectedFontColor}
