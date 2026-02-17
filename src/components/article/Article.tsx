@@ -14,23 +14,11 @@ type ArticleProps = {
 export const Article = (props: ArticleProps) => {
 	return (
 		<article className={clsx(styles.article)}>
-			<Text
-				as='h1'
-				family={props.fontFamily.className as FontFamiliesClasses}
-				size={45}
-				weight={800}
-				uppercase
-				dynamicLite>
+			<Text as='h1' size={45} weight={800} uppercase dynamicLite>
 				Портрет Западной Швейцарии
 			</Text>
 			<div className={styles.titleDescription}>
-				<Text
-					size={22}
-					family={props.fontFamily.className as FontFamiliesClasses}
-					weight={800}
-					uppercase
-					align='center'
-					dynamicLite>
+				<Text size={22} weight={800} uppercase align='center' dynamicLite>
 					Примитивист Фиштр расписывает новый бюджетный авиалайнер
 				</Text>
 			</div>

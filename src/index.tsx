@@ -69,6 +69,12 @@ const App = () => {
 		setSelectedFontColorOption(defaultArticleState.fontColor);
 		setSelectedBackgroundColorOption(defaultArticleState.backgroundColor);
 		setSelectedContentWidthOption(defaultArticleState.contentWidth);
+
+		setFontFamilyOption(defaultArticleState.fontFamilyOption);
+		setFontSizeOption(defaultArticleState.fontSizeOption);
+		setFontColorOption(defaultArticleState.fontColor);
+		setBackgroundColorOption(defaultArticleState.backgroundColor);
+		setContentWidthOption(defaultArticleState.contentWidth);
 	};
 
 	const [fontFamilyOption, setFontFamilyOption] = useState(
