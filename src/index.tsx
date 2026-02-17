@@ -24,87 +24,79 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [selectedFontFamilyOption, setSelectedFontFamilyOption] = useState(
-		defaultArticleState.fontFamilyOption
-	);
+	const [formSettings, setFormSettings] = useState({
+		fontFamily: defaultArticleState.fontFamilyOption,
+		fontSize: defaultArticleState.fontSizeOption,
+		fontColor: defaultArticleState.fontColor,
+		backgroundColor: defaultArticleState.backgroundColor,
+		contentWidth: defaultArticleState.contentWidth,
+	});
 
-	const [selectedFontSizeOption, setSelectedFontSizeOption] = useState(
-		defaultArticleState.fontSizeOption
-	);
-
-	const [selectedFontColorOption, setSelectedFontColorOption] = useState(
-		defaultArticleState.fontColor
-	);
-
-	const [selectedBackgroundColorOption, setSelectedBackgroundColorOption] =
-		useState(defaultArticleState.backgroundColor);
-
-	const [selectedContentWidthOption, setSelectedContentWidthOption] = useState(
-		defaultArticleState.contentWidth
-	);
+	const [pageSettings, setPageSettings] = useState({
+		fontFamily: defaultArticleState.fontFamilyOption,
+		fontSize: defaultArticleState.fontSizeOption,
+		fontColor: defaultArticleState.fontColor,
+		backgroundColor: defaultArticleState.backgroundColor,
+		contentWidth: defaultArticleState.contentWidth,
+	});
 
 	const onChangeSelectedFontFamily = (value: OptionType) => {
-		setSelectedFontFamilyOption(value);
+		setFormSettings({
+			...formSettings,
+			fontFamily: value,
+		});
 	};
 
 	const onChangeSelectedFontSize = (value: OptionType) => {
-		setSelectedFontSizeOption(value);
+		setFormSettings({
+			...formSettings,
+			fontSize: value,
+		});
 	};
 
 	const onChangeSelectedFontColor = (value: OptionType) => {
-		setSelectedFontColorOption(value);
+		setFormSettings({
+			...formSettings,
+			fontColor: value,
+		});
 	};
 
 	const onChangeSelectedBackgroundColor = (value: OptionType) => {
-		setSelectedBackgroundColorOption(value);
+		setFormSettings({
+			...formSettings,
+			backgroundColor: value,
+		});
 	};
 
 	const onChangeSelectedContentWidth = (value: OptionType) => {
-		setSelectedContentWidthOption(value);
+		setFormSettings({
+			...formSettings,
+			contentWidth: value,
+		});
 	};
 
 	const clearForm = () => {
-		setSelectedFontFamilyOption(defaultArticleState.fontFamilyOption);
-		setSelectedFontSizeOption(defaultArticleState.fontSizeOption);
-		setSelectedFontColorOption(defaultArticleState.fontColor);
-		setSelectedBackgroundColorOption(defaultArticleState.backgroundColor);
-		setSelectedContentWidthOption(defaultArticleState.contentWidth);
+		setFormSettings({
+			fontFamily: defaultArticleState.fontFamilyOption,
+			fontSize: defaultArticleState.fontSizeOption,
+			fontColor: defaultArticleState.fontColor,
+			backgroundColor: defaultArticleState.backgroundColor,
+			contentWidth: defaultArticleState.contentWidth,
+		});
 
-		setFontFamilyOption(defaultArticleState.fontFamilyOption);
-		setFontSizeOption(defaultArticleState.fontSizeOption);
-		setFontColorOption(defaultArticleState.fontColor);
-		setBackgroundColorOption(defaultArticleState.backgroundColor);
-		setContentWidthOption(defaultArticleState.contentWidth);
+		setPageSettings({
+			fontFamily: defaultArticleState.fontFamilyOption,
+			fontSize: defaultArticleState.fontSizeOption,
+			fontColor: defaultArticleState.fontColor,
+			backgroundColor: defaultArticleState.backgroundColor,
+			contentWidth: defaultArticleState.contentWidth,
+		});
 	};
-
-	const [fontFamilyOption, setFontFamilyOption] = useState(
-		defaultArticleState.fontFamilyOption
-	);
-
-	const [fontSizeOption, setFontSizeOption] = useState(
-		defaultArticleState.fontSizeOption
-	);
-
-	const [fontColorOption, setFontColorOption] = useState(
-		defaultArticleState.fontColor
-	);
-
-	const [backgroundColorOption, setBackgroundColorOption] = useState(
-		defaultArticleState.backgroundColor
-	);
-
-	const [contentWidthOption, setContentWidthOption] = useState(
-		defaultArticleState.contentWidth
-	);
 
 	const submitForm = (event: FormEvent) => {
 		event.preventDefault();
 
-		setFontFamilyOption(selectedFontFamilyOption);
-		setFontSizeOption(selectedFontSizeOption);
-		setFontColorOption(selectedFontColorOption);
-		setBackgroundColorOption(selectedBackgroundColorOption);
-		setContentWidthOption(selectedContentWidthOption);
+		setPageSettings({ ...formSettings });
 	};
 
 	return (
@@ -112,17 +104,17 @@ const App = () => {
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': fontFamilyOption.value,
-					'--font-size': fontSizeOption.value,
-					'--font-color': fontColorOption.value,
-					'--container-width': contentWidthOption.value,
-					'--bg-color': backgroundColorOption.value,
+					'--font-family': pageSettings.fontFamily.value,
+					'--font-size': pageSettings.fontSize.value,
+					'--font-color': pageSettings.fontColor.value,
+					'--container-width': pageSettings.contentWidth.value,
+					'--bg-color': pageSettings.backgroundColor.value,
 				} as CSSProperties
 			}>
 			<ArticleParamsForm onClear={clearForm} onSubmit={submitForm}>
 				<Select
 					title={'Шрифт'}
-					selected={selectedFontFamilyOption}
+					selected={formSettings.fontFamily}
 					options={fontFamilyOptions}
 					onChange={onChangeSelectedFontFamily}
 				/>
@@ -130,30 +122,30 @@ const App = () => {
 					title={'Размер шрифта'}
 					name={'Размер шрифта'}
 					options={fontSizeOptions}
-					selected={selectedFontSizeOption}
+					selected={formSettings.fontSize}
 					onChange={onChangeSelectedFontSize}
 				/>
 				<Select
 					title={'Цвет шрифта'}
-					selected={selectedFontColorOption}
+					selected={formSettings.fontColor}
 					options={fontColors}
 					onChange={onChangeSelectedFontColor}
 				/>
 				<Separator />
 				<Select
 					title={'Цвет фона'}
-					selected={selectedBackgroundColorOption}
+					selected={formSettings.backgroundColor}
 					options={backgroundColors}
 					onChange={onChangeSelectedBackgroundColor}
 				/>
 				<Select
 					title={'Ширина контента'}
-					selected={selectedContentWidthOption}
+					selected={formSettings.contentWidth}
 					options={contentWidthArr}
 					onChange={onChangeSelectedContentWidth}
 				/>
 			</ArticleParamsForm>
-			<Article fontFamily={selectedFontFamilyOption} />
+			<Article fontFamily={formSettings.fontFamily} />
 		</main>
 	);
 };
