@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties, useState, FormEvent } from 'react';
-import clsx from 'clsx';
 
 import { Article } from 'components/article';
 import { ArticleParamsForm } from 'components/article-params-form';
@@ -101,7 +100,7 @@ const App = () => {
 
 	return (
 		<main
-			className={clsx(styles.main)}
+			className={styles.main}
 			style={
 				{
 					'--font-family': pageSettings.fontFamily.value,
