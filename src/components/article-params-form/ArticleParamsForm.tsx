@@ -35,6 +35,8 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 	};
 
 	useEffect(() => {
+		if (!isMenuOpen) return;
+
 		document.addEventListener('mousedown', onMouseDown);
 		return () => {
 			document.removeEventListener('mousedown', onMouseDown);
