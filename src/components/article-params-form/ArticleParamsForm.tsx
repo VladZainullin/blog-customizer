@@ -18,19 +18,19 @@ type ArticleParamsFormProps = {
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const asideRef = useRef<HTMLDivElement>(null);
 
 	const onClick = () => {
-		setIsOpen(!isOpen);
+		setIsMenuOpen(!isMenuOpen);
 	};
 
 	const onMouseDown = (event: MouseEvent) => {
 		const clickedElement = event.target as Node;
 
 		if (!asideRef.current?.contains(clickedElement)) {
-			setIsOpen(false);
+			setIsMenuOpen(false);
 		}
 	};
 
@@ -39,15 +39,15 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 		return () => {
 			document.removeEventListener('mousedown', onMouseDown);
 		};
-	}, [isOpen]);
+	}, [isMenuOpen]);
 
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={onClick} />
+			<ArrowButton isOpen={isMenuOpen} onClick={onClick} />
 			<aside
 				ref={asideRef}
 				className={`${styles.container} ${
-					isOpen ? styles.container_open : ''
+					isMenuOpen ? styles.container_open : ''
 				}`}>
 				<form className={styles.form} onSubmit={props.onSubmit}>
 					<span className={styles.title}>Задайте параметры</span>
